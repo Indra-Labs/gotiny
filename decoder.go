@@ -6,13 +6,12 @@ import (
 )
 
 type Decoder struct {
-	buf     []byte //buf
-	index   int    //下一个要使用的字节在buf中的下标
-	boolPos byte   //下一次要读取的bool在buf中的下标,即buf[boolPos]
-	boolBit byte   //下一次要读取的bool的buf[boolPos]中的bit位
-
-	engines []decEng //解码器集合
-	length  int      //解码器数量
+	buf     []byte   // buf
+	index   int      // 下一个要使用的字节在buf中的下标 the subscript in buf of the next byte to be used
+	boolPos byte     // 下一次要读取的bool在buf中的下标,即buf[boolPos] The subscript of the bool to be read next in buf, that is, buf[boolPos]
+	boolBit byte     // 下一次要读取的bool的buf[boolPos]中的bit位 The bit in buf[boolPos] of bool to be read next time
+	engines []decEng // 解码器集合 Decoder Collection
+	length  int      // 解码器数量 Number of decoders
 }
 
 func Unmarshal(buf []byte, is ...interface{}) int {
